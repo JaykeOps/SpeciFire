@@ -4,7 +4,7 @@ namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
 {
     public class PropositionBuilder
     {
-        private Mock<IProposition> testDouble = new Mock<IProposition>();
+        private readonly Mock<IProposition> testDouble = new Mock<IProposition>();
 
 
         public IProposition Build() => testDouble.Object;

@@ -3,12 +3,12 @@ using System.Linq.Expressions;
 
 namespace SpeciFire.UnitTests
 {
-    internal sealed class InitializationSpecification<TSubject> : Specification<TSubject>, IInitializationSpecification<TSubject>
+    internal sealed class InitialSpecification<TSubject> : Specification<TSubject>, IInitialSpecification<TSubject>
     {
-        internal InitializationSpecification() { }
+        internal InitialSpecification() { }
 
 
-        public IInitializationSpecification<TSubject> Specify => this;
+        public IInitialSpecification<TSubject> Specify => this;
 
 
         public Specification<TSubject> SpecificationFrom(Specification<TSubject> specification)
