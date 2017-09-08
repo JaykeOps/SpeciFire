@@ -22,5 +22,6 @@ namespace SpeciFire.UnitTests
 
         public Specification<TSubject> OR(Specification<TSubject> specification) =>
             new OrSpecification<TSubject>(this, specification);
+
     }
 }

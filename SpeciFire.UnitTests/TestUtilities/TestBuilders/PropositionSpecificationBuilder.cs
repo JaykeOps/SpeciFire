@@ -23,5 +23,17 @@ namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
             testDouble.Setup(x => x.ToExpression()).Returns(x => x.Q);
             return this;
         }
+
+        public PropositionSpecificationBuilder IsRSpecificationStub()
+        {
+            testDouble.Setup(x => x.ToExpression()).Returns(x => x.R);
+            return this;
+        }
+
+        public PropositionSpecificationBuilder IsSSpecificationStub()
+        {
+            testDouble.Setup(x => x.ToExpression()).Returns(x => x.S);
+            return this;
+        }
     }
 }
