@@ -1,4 +1,4 @@
-﻿namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
+﻿namespace SpeciFire.UnitTests.TestUtilities
 {
     public interface IProposition
     {

@@ -2,7 +2,7 @@ using FluentAssertions;
 using SpeciFire.UnitTests.TestUtilities.TestBuilders;
 using Xunit;
 
-namespace SpeciFire.UnitTests
+namespace SpeciFire.UnitTests.Tests
 {
     public class InitialSpecificationTests
     {
@@ -10,7 +10,7 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_InitialSpecification_When_CallingToExpression_Then_AlwaysTrueExpressionShouldBeReturned()
         {
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
             initialSpecificationSut.ToExpression().ToString()
                 .Should().Be("x => True", "because they are equivalent");
@@ -21,7 +21,7 @@ namespace SpeciFire.UnitTests
         public void Given_PIsTrueSpecification_When_SpecifiedByInitialSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).ToExpression();

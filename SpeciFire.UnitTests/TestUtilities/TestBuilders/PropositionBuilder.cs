@@ -2,7 +2,7 @@
 
 namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
 {
-    public class PropositionBuilder
+    internal sealed class PropositionBuilder
     {
         private readonly Mock<IProposition> testDouble = new Mock<IProposition>();
 

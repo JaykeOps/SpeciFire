@@ -12,7 +12,7 @@ namespace SpeciFire.UnitTests
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
             var isRSpecification = Given.PropositionSpecification.IsRStub().Build();
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)
@@ -29,7 +29,7 @@ namespace SpeciFire.UnitTests
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
             var isRSpecification = Given.PropositionSpecification.IsRStub().Build();
             var isSSpecification = Given.PropositionSpecification.IsSStub().Build();
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)

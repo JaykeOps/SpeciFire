@@ -1,8 +1,5 @@
 using System;
-using System.Dynamic;
-using System.Linq;
 using System.Linq.Expressions;
-using SpeciFire.UnitTests.TestUtilities.TestBuilders;
 
 namespace SpeciFire.UnitTests
 {
@@ -11,7 +8,7 @@ namespace SpeciFire.UnitTests
         public static readonly IInitialSpecification<TSubject> Initialize = new InitialSpecification<TSubject>();
 
 
-        public Specification<TSubject> NOT => new NOTSpecification<TSubject>(this);
+        public Specification<TSubject> NOT => new NotSpecification<TSubject>(this);
 
 
         public bool IsSatisfiedBySubject(TSubject subject)
@@ -28,21 +25,5 @@ namespace SpeciFire.UnitTests
 
         public Specification<TSubject> OR(Specification<TSubject> specification) =>
             new OrSpecification<TSubject>(this, specification);
-    }
-
-    public sealed class NOTSpecification<TSubject> : Specification<TSubject>
-    {
-        private readonly Specification<TSubject> specification;
-
-
-        public NOTSpecification(Specification<TSubject> specification) => this.specification = specification;
-
-
-        public override Expression<Func<TSubject, bool>> ToExpression()
-        {
-            var expression = specification.ToExpression();
-            var negatedExpression = Expression.Not(expression.Body);
-            return Expression.Lambda<Func<TSubject, bool>>(negatedExpression, expression.Parameters.Single());
-        }
     }
 }

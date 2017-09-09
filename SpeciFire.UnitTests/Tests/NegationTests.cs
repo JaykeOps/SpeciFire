@@ -2,7 +2,7 @@ using FluentAssertions;
 using SpeciFire.UnitTests.TestUtilities.TestBuilders;
 using Xunit;
 
-namespace SpeciFire.UnitTests
+namespace SpeciFire.UnitTests.Tests
 {
     public class NegationTests
     {
@@ -24,7 +24,7 @@ namespace SpeciFire.UnitTests
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification.NOT).AND(isQSpecification.NOT)
                 .ToExpression();
@@ -39,7 +39,7 @@ namespace SpeciFire.UnitTests
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Specification<IProposition>.Initialize;
+            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification).NOT
