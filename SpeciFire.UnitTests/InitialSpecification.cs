@@ -11,7 +11,7 @@ namespace SpeciFire.UnitTests
         public IInitialSpecification<TSubject> Specify => this;
 
 
-        public Specification<TSubject> SpecificationFrom(Specification<TSubject> specification)
+        public Specification<TSubject> From(Specification<TSubject> specification)
         {
             if (this == Initialize)
                 return specification;

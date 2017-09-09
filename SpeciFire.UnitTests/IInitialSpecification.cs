@@ -6,7 +6,7 @@ namespace SpeciFire.UnitTests
     public interface IInitialSpecification<TSubject>
     {
         IInitialSpecification<TSubject> Specify { get; }
-        Specification<TSubject> SpecificationFrom(Specification<TSubject> specification);
+        Specification<TSubject> From(Specification<TSubject> specification);
         Expression<Func<TSubject, bool>> ToExpression();
     }
 }

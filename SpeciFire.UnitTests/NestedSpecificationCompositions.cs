@@ -9,13 +9,13 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_PIsTrueSpecification_QIsTrueSpecification_And_RIsTrueSpecification_When_SpecifiedAsADisjunctionOf_IsPAndIsQ_Or_IsR_When_CallingToExpression_Then_Expression_IsPAndIsQ_Or_IsR_IsReturned()
         {
-            var isPSpecification = Given.PropositionSpecification.IsPSpecificationStub().Build();
-            var isQSpecification = Given.PropositionSpecification.IsQSpecificationStub().Build();
-            var isRSpecification = Given.PropositionSpecification.IsRSpecificationStub().Build();
+            var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
+            var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
+            var isRSpecification = Given.PropositionSpecification.IsRStub().Build();
             var initialSpecificationSut = Specification<IProposition>.Initialize;
 
 
-            var predicate = initialSpecificationSut.Specify.SpecificationFrom(isPSpecification).AND(isQSpecification)
+            var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)
                 .OR(isRSpecification).ToExpression();
 
 
@@ -25,14 +25,14 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_PIsTrueSpecification_QIsTrueSpecification_RIsTrueSpecification_And_SIsTrueSpecification_When_SpecifedAsAConjunctionOf_IsPAndIsQ_And_IsROrIsS_When_CallingToExpression_Then_Expression_IsPAndIsQ_And_IsRAndIsS_IsReturned()
         {
-            var isPSpecification = Given.PropositionSpecification.IsPSpecificationStub().Build();
-            var isQSpecification = Given.PropositionSpecification.IsQSpecificationStub().Build();
-            var isRSpecification = Given.PropositionSpecification.IsRSpecificationStub().Build();
-            var isSSpecification = Given.PropositionSpecification.IsSSpecificationStub().Build();
+            var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
+            var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
+            var isRSpecification = Given.PropositionSpecification.IsRStub().Build();
+            var isSSpecification = Given.PropositionSpecification.IsSStub().Build();
             var initialSpecificationSut = Specification<IProposition>.Initialize;
 
 
-            var predicate = initialSpecificationSut.Specify.SpecificationFrom(isPSpecification).AND(isQSpecification)
+            var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)
                 .AND(isRSpecification.OR(isSSpecification)).ToExpression();
 
 

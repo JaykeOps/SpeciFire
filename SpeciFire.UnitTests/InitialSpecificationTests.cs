@@ -20,11 +20,11 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_PIsTrueSpecification_When_SpecifiedByInitialSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
         {
-            var isPSpecification = Given.PropositionSpecification.IsPSpecificationStub().Build();
+            var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var initialSpecificationSut = Specification<IProposition>.Initialize;
 
 
-            var predicate = initialSpecificationSut.Specify.SpecificationFrom(isPSpecification).ToExpression();
+            var predicate = initialSpecificationSut.Specify.From(isPSpecification).ToExpression();
 
             predicate.ToString().Should().Be(isPSpecification.ToExpression().ToString(), "because they are equivalent");
 

@@ -9,12 +9,12 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_PIsTrueSpecification_And_QIsTrueSpecification_When_SpecifiedAsConjunction_And_ToExpressionIsCalled_Then_AConjunctionOfIsPAndIsQSpecificationsIsReturned()
         {
-            var isPSpecification = Given.PropositionSpecification.IsPSpecificationStub().Build();
-            var isQSpecification = Given.PropositionSpecification.IsQSpecificationStub().Build();
+            var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
+            var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
             var initialSpecificationSut = Specification<IProposition>.Initialize;
 
 
-            var predicate = initialSpecificationSut.Specify.SpecificationFrom(isPSpecification).AND(isQSpecification)
+            var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)
                 .ToExpression();
 
 
@@ -25,12 +25,12 @@ namespace SpeciFire.UnitTests
         [Fact]
         public void Given_PIsTrueSpecification_And_QIsTrueSpecification_When_SpecifedAsDisjunction_And_ToExpressionIsCalled_Then_ADisjunctionOfIsPAndIsQSpecificationsIsReturned()
         {
-            var isPSpecification = Given.PropositionSpecification.IsPSpecificationStub().Build();
-            var isQSpecification = Given.PropositionSpecification.IsQSpecificationStub().Build();
+            var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
+            var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
             var initialSpecificationSut = Specification<IProposition>.Initialize;
 
 
-            var predicate = initialSpecificationSut.Specify.SpecificationFrom(isPSpecification).OR(isQSpecification)
+            var predicate = initialSpecificationSut.Specify.From(isPSpecification).OR(isQSpecification)
                 .ToExpression();
 
 
