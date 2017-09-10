@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using SpeciFire.UnitTests.ExpressionUtilities;
 
 namespace SpeciFire.UnitTests
 {
@@ -22,9 +23,7 @@ namespace SpeciFire.UnitTests
             var leftExpression = left.ToExpression();
             var rightExpression = right.ToExpression();
 
-            BinaryExpression conjunction = Expression.AndAlso(leftExpression.Body, rightExpression.Body);
-
-            return Expression.Lambda<Func<TSubject, bool>>(conjunction, leftExpression.Parameters.Single());
+            return leftExpression.And(rightExpression);
         }
     }
 }

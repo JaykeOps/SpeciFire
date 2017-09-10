@@ -8,13 +8,13 @@ using Xunit;
 
 namespace SpeciFire.UnitTests.Tests
 {
-    [Collection("Specification ToDb test collection")]
-    public class SpecificationToDbTests
+    [Collection("Specification ToDbContext test collection")]
+    public class SimpleSpecificationToDbTests
     {
-        private SqliteFixture fixture;
+        private readonly SqliteFixture fixture;
 
 
-        public SpecificationToDbTests(SqliteFixture fixture) => this.fixture = fixture;
+        public SimpleSpecificationToDbTests(SqliteFixture fixture) => this.fixture = fixture;
 
 
         [Fact]
@@ -41,7 +41,7 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_MiamiCitySpecificationUponInitialSpecification_When_ContactsContextIsQueried_Then_AllContactsReturnedShouldHaveCityValue_Miami()
+        public void Given_SeededContactContext_And_MiamiCitySpecificationUponInitialSpecification_When_QueryingContactContext_Then_AllContactsReturnedShouldHaveCityValue_Miami()
         {
             var miamiCitySpecification = Given.ContactSpecification.MiamiCity().Build();
             var initialSpecification = Given.InitialSpecification<Contact>().Build();
@@ -63,34 +63,28 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_LastNameFirstLetteIsA_And_CityNameFirstletterIsA_UponInitialSpecification_AllContactsReturnedShouldHave_LastNameAndCityNameWithFirstLetterA()
+        public void Given_SeededConactContext_And_InitialSpecification_FollowedBy_NegationLastNamesFirstLetterIsHSpecification_When_QueryingContactContext_Then_NoContactsReturnedShouldContainALastNameWithFirstLetter_H()
         {
             var initialSpecification = Given.InitialSpecification<Contact>().Build();
+            var lastNamesFirstLetterIsHSpecification =
+                Given.ContactSpecification.LastNamesFirstLetterIsHSpecification().Build();
 
-            var lastNameFirstLetterASpecification =
-                Given.ContactSpecification.LastNameFirstLetterIsASpecification().Build();
+            var lastNameFirstLetterIsNotHSpecification =
+                initialSpecification.Specify.From(lastNamesFirstLetterIsHSpecification.NOT);
 
-            var cityNameFirstLetterASpecification =
-                Given.ContactSpecification.CityNameFirstLetterIsASpecification().Build();
-
-            var lastNameAndCityNameFirstLetterIsASpecification = initialSpecification.Specify
-                .From(lastNameFirstLetterASpecification).AND(cityNameFirstLetterASpecification);
-
-            IReadOnlyList<Contact> contactsResult;
-
+            IReadOnlyList<Contact> contactResult;
 
 
             using (var context = new ContactContext(fixture.TestContextOptions))
             {
-                contactsResult = context.Contacts
-                    .Where(lastNameAndCityNameFirstLetterIsASpecification.ToExpression().Compile()).ToList();
+                contactResult = context.Contacts.Where(lastNameFirstLetterIsNotHSpecification.ToExpression().Compile())
+                    .ToList();
             }
 
 
-            contactsResult
-                .Should().OnlyContain(x => string.Equals(x.Name.LastName[0].ToString(), "A", StringComparison.OrdinalIgnoreCase))
-                .And.Subject
-                .Should().OnlyContain(x => string.Equals(x.Address.City[0].ToString(), "A", StringComparison.OrdinalIgnoreCase));
+            contactResult.Should().OnlyContain(x =>
+                !string.Equals(x.Name.LastName[0].ToString(), "H", StringComparison.OrdinalIgnoreCase));
         }
+        
     }
 }

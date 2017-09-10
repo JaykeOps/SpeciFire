@@ -5,10 +5,10 @@ using Xunit;
 
 namespace SpeciFire.UnitTests.Tests
 {
-    [Collection("Specification ToDb test collection")]
+    [Collection("Specification ToDbContext test collection")]
     public class InMemoryDbInitializationTests
     {
-        private SqliteFixture fixture;
+        private readonly SqliteFixture fixture;
 
         public InMemoryDbInitializationTests(SqliteFixture fixture) => this.fixture = fixture;
 

@@ -17,15 +17,15 @@ namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
             return this;
         }
 
-        public ContactSpecificationBuilder LastNameFirstLetterIsASpecification()
+        public ContactSpecificationBuilder LastNamesFirstLetterIsHSpecification()
         {
-            specification = new LastNameFirstLetterIsASpecification();
+            specification = new LastNamesFirstLetterIsHSpecification();
             return this;
         }
 
-        public ContactSpecificationBuilder CityNameFirstLetterIsASpecification()
+        public ContactSpecificationBuilder CityNamesFirstLetterIsHSpecification()
         {
-            specification = new CityNameFirstLetterIsASpecification();
+            specification = new CityNamesFirstLetterIsHSpecification();
             return this;
         }
 
