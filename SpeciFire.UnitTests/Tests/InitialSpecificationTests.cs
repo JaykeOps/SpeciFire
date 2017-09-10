@@ -11,7 +11,7 @@ namespace SpeciFire.UnitTests.Tests
         [Fact]
         public void Given_UniversalSpecification_When_CallingToExpression_Then_AlwaysTrueExpressionShouldBeReturned()
         {
-            var universalSpecificationSut = new UniversialSpecification<IProposition>();
+            var universalSpecificationSut = Specification<IProposition>.UniversialSpecification;
 
             universalSpecificationSut.ToExpression().ToString()
                 .Should().Be("x => True");
@@ -19,10 +19,10 @@ namespace SpeciFire.UnitTests.Tests
         }
 
         [Fact]
-        public void Given_PIsTrueSpecification_When_SpecifiedByuniversalSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
+        public void Given_PIsTrueSpecification_When_SpecifiedByUniversalSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
-            var universalSpecification = new UniversialSpecification<IProposition>();
+            var universalSpecification = Specification<IProposition>.UniversialSpecification;
 
 
             var predicate = universalSpecification.OverrideWith(isPSpecification).ToExpression();
