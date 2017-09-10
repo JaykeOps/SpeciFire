@@ -1,4 +1,5 @@
 using FluentAssertions;
+using SpeciFire.UnitTests.TestUtilities;
 using SpeciFire.UnitTests.TestUtilities.TestBuilders;
 using Xunit;
 
@@ -11,7 +12,7 @@ namespace SpeciFire.UnitTests.Tests
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
+            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification)
@@ -27,7 +28,7 @@ namespace SpeciFire.UnitTests.Tests
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Given.InitialPropositionSpecficiation.Build();
+            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
 
 
             var predicate = initialSpecificationSut.Specify.From(isPSpecification).OR(isQSpecification)

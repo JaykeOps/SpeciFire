@@ -5,16 +5,15 @@ using Xunit;
 
 namespace SpeciFire.UnitTests.Tests
 {
-    [Collection("Specification repository test collection")]
+    [Collection("Specification ToDb test collection")]
     public class InMemoryDbInitializationTests
     {
         private SqliteFixture fixture;
 
         public InMemoryDbInitializationTests(SqliteFixture fixture) => this.fixture = fixture;
 
-
         [Fact]
-        public void DbIsSeeded()
+        public void Given_SeededContactContext_Then_ContactsSetShouldNotBeEmptyOrNull()
         {
             using (var context = new ContactContext(fixture.TestContextOptions))
             {
@@ -22,5 +21,6 @@ namespace SpeciFire.UnitTests.Tests
                 context.Contacts.Should().NotBeNullOrEmpty();
             }
         }
+
     }
 }
