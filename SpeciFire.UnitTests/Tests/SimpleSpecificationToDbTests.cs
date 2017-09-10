@@ -18,9 +18,9 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_InitialSpecification_When_QueryingContactContext_AllContactsShouldBeReturned()
+        public void Given_SeededContactContext_And_universalSpecification_When_QueryingContactContext_AllContactsShouldBeReturned()
         {
-            var initialSpecification = Given.InitialSpecification<Contact>().Build();
+            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
             int contactSetCount;
             int queryResultCount;
 
@@ -32,7 +32,7 @@ namespace SpeciFire.UnitTests.Tests
 
             using (var context = new ContactContext(fixture.TestContextOptions))
             {
-                queryResultCount = context.Contacts.Where(initialSpecification.ToExpression().Compile()).Count();
+                queryResultCount = context.Contacts.Where(universalSpecification.ToExpression().Compile()).Count();
             }
 
 
@@ -41,11 +41,11 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_MiamiCitySpecificationUponInitialSpecification_When_QueryingContactContext_Then_AllContactsReturnedShouldHaveCityValue_Miami()
+        public void Given_SeededContactContext_And_UniversalSpecification_FollowedBy_MiamiCitySpecification_When_QueryingContactContext_Then_AllContactsReturnedShouldHaveCityValue_Miami()
         {
             var miamiCitySpecification = Given.ContactSpecification.MiamiCity().Build();
-            var initialSpecification = Given.InitialSpecification<Contact>().Build();
-            miamiCitySpecification = initialSpecification.Specify.From(miamiCitySpecification);
+            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
+            miamiCitySpecification = universalSpecification.OverrideWith(miamiCitySpecification);
 
             IReadOnlyList<Contact> contactsResult;
 
@@ -63,14 +63,14 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededConactContext_And_InitialSpecification_FollowedBy_NegationLastNamesFirstLetterIsHSpecification_When_QueryingContactContext_Then_NoContactsReturnedShouldContainALastNameWithFirstLetter_H()
+        public void Given_SeededConactContext_And_UniversalSpecification_FollowedBy_NegationLastNamesFirstLetterIsHSpecification_When_QueryingContactContext_Then_NoContactsReturnedShouldContainALastNameWithFirstLetter_H()
         {
-            var initialSpecification = Given.InitialSpecification<Contact>().Build();
+            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
             var lastNamesFirstLetterIsHSpecification =
                 Given.ContactSpecification.LastNamesFirstLetterIsHSpecification().Build();
 
             var lastNameFirstLetterIsNotHSpecification =
-                initialSpecification.Specify.From(lastNamesFirstLetterIsHSpecification.NOT);
+                universalSpecification.OverrideWith(lastNamesFirstLetterIsHSpecification.NOT);
 
             IReadOnlyList<Contact> contactResult;
 

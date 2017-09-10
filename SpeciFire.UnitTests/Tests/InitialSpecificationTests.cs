@@ -5,29 +5,29 @@ using Xunit;
 
 namespace SpeciFire.UnitTests.Tests
 {
-    public class InitialSpecificationTests
+    public class UniversalSpecificationTests
     {
 
         [Fact]
-        public void Given_InitialSpecification_When_CallingToExpression_Then_AlwaysTrueExpressionShouldBeReturned()
+        public void Given_UniversalSpecification_When_CallingToExpression_Then_AlwaysTrueExpressionShouldBeReturned()
         {
-            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
+            var universalSpecificationSut = new UniversialSpecification<IProposition>();
 
-            initialSpecificationSut.ToExpression().ToString()
-                .Should().Be("x => True", "because they are equivalent");
+            universalSpecificationSut.ToExpression().ToString()
+                .Should().Be("x => True");
 
         }
 
         [Fact]
-        public void Given_PIsTrueSpecification_When_SpecifiedByInitialSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
+        public void Given_PIsTrueSpecification_When_SpecifiedByuniversalSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
-            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
+            var universalSpecification = new UniversialSpecification<IProposition>();
 
 
-            var predicate = initialSpecificationSut.Specify.From(isPSpecification).ToExpression();
+            var predicate = universalSpecification.OverrideWith(isPSpecification).ToExpression();
 
-            predicate.ToString().Should().Be(isPSpecification.ToExpression().ToString(), "because they are equivalent");
+            predicate.ToString().Should().Be("x => x.P");
 
         }
 

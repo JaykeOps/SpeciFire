@@ -3,17 +3,14 @@ using System.Linq.Expressions;
 
 namespace SpeciFire.UnitTests
 {
-    internal sealed class InitialSpecification<TSubject> : Specification<TSubject>, IInitialSpecification<TSubject>
+    public sealed class UniversialSpecification<TSubject> : Specification<TSubject>, IUniversialSpecification<TSubject>
     {
-        internal InitialSpecification() { }
+        internal UniversialSpecification() { }
 
 
-        public IInitialSpecification<TSubject> Specify => this;
-
-
-        public Specification<TSubject> From(Specification<TSubject> specification)
+        public Specification<TSubject> OverrideWith(Specification<TSubject> specification)
         {
-            if (this == Initialize)
+            if (this == UniversialSpecification)
                 return specification;
             if (specification == this)
                 return this;

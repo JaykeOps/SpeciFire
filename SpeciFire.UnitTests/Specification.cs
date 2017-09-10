@@ -5,7 +5,7 @@ namespace SpeciFire.UnitTests
 {
     public abstract class Specification<TSubject>
     {
-        public static readonly IInitialSpecification<TSubject> Initialize = new InitialSpecification<TSubject>();
+        public static readonly IUniversialSpecification<TSubject> UniversialSpecification = new UniversialSpecification<TSubject>();
 
 
         public Specification<TSubject> NOT => new NotSpecification<TSubject>(this);

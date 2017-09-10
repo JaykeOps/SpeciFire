@@ -8,7 +8,7 @@ namespace SpeciFire.UnitTests.Tests
     public class NegationTests
     {
         [Fact]
-        public void Given_IsPSpecification_When_IsPSpecificationIsNegated_And_ToExpressionIsCalled_Then_Expression_NegationIsP_IsReturned()
+        public void Given_UniversalSpecification_FollowedBy_IsPSpecification_When_IsPSpecificationIsNegated_And_ToExpressionIsCalled_Then_Expression_NegationIsP_IsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
 
@@ -21,13 +21,14 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_IsPSpecification_And_IsQSpecification_When_BothAreNegatedSeparately_And_SpecifiedAsAConjunction_When_ToExpressionIsCalled_Then_Expression_NegationIsPAndNegationIsQ_IsReturned()
+        public void Given_UniversalSpecification_FollowedBy_IsPSpecification_And_IsQSpecification_When_BothAreNegatedSeparately_And_SpecifiedAsAConjunction_When_ToExpressionIsCalled_Then_Expression_NegationIsPAndNegationIsQ_IsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
+            var universalSpecification = Given.UniversialSpecificationStub<IProposition>().Build();
 
-            var predicate = initialSpecificationSut.Specify.From(isPSpecification.NOT).AND(isQSpecification.NOT)
+
+            var predicate = universalSpecification.OverrideWith(isPSpecification.NOT).AND(isQSpecification.NOT)
                 .ToExpression();
 
 
@@ -36,14 +37,14 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_IsPSpecification_And_IsQSpecification_When_SpecifiedAsAConjunction_And_ConjunctionIsNegated_When_ToExpressionIsCalled_Then_Expression_Negation_IsPAndIsQ_IsReturned()
+        public void Given_UniversalSpecification_FollowedBy_IsPSpecification_And_IsQSpecification_When_SpecifiedAsAConjunction_And_ConjunctionIsNegated_When_ToExpressionIsCalled_Then_Expression_Negation_IsPAndIsQ_IsReturned()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var initialSpecificationSut = Given.InitialSpecification<IProposition>().Build();
+            var universalSpecification = Given.UniversialSpecificationStub<IProposition>().Build();
 
 
-            var predicate = initialSpecificationSut.Specify.From(isPSpecification).AND(isQSpecification).NOT
+            var predicate = universalSpecification.OverrideWith(isPSpecification).AND(isQSpecification).NOT
                 .ToExpression();
 
 
