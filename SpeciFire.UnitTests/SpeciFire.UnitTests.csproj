@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="OperatorPrecedenceTests.cs" />
+    <None Include="Tests\OperatorPrecedenceTests.cs" />
   </ItemGroup>
 
   <ItemGroup>

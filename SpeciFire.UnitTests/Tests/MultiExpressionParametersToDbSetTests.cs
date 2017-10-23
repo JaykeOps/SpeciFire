@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using SpeciFire.UnitTests.TestUtilities;
 using SpeciFire.UnitTests.TestUtilities.TestBuilders;
 using SpeciFire.UnitTests.TestUtilities._Contact;
 using Xunit;
@@ -10,12 +9,12 @@ using Xunit;
 namespace SpeciFire.UnitTests.Tests
 {
     [Collection("Specification ToDbContext test collection")]
-    public class SpecificationWithMultiExpressionParametersToDbTests
+    public class MultiExpressionParametersToDbSetTests
     {
         private readonly SqliteFixture fixture;
 
 
-        public SpecificationWithMultiExpressionParametersToDbTests(SqliteFixture fixture) => this.fixture = fixture;
+        public MultiExpressionParametersToDbSetTests(SqliteFixture fixture) => this.fixture = fixture;
 
 
         [Fact]
