@@ -5,27 +5,27 @@ using Xunit;
 
 namespace SpeciFire.UnitTests.Tests
 {
-    public class UniversalSpecificationTests
+    public class BlankSpecificationTests
     {
 
         [Fact]
-        public void Given_UniversalSpecification_When_CallingToExpression_Then_AlwaysTrueExpressionShouldBeReturned()
+        public void ExpressionShouldBeTrueForAll()
         {
-            var universalSpecificationSut = Specification<IProposition>.UniversialSpecification;
+            var blankSpecificationSut = Given.BlankSpecification<IProposition>().Real().Build();
 
-            universalSpecificationSut.ToExpression().ToString()
+            blankSpecificationSut.ToExpression().ToString()
                 .Should().Be("x => True");
 
         }
 
         [Fact]
-        public void Given_PIsTrueSpecification_When_SpecifiedByUniversalSpecification_And_ToExpressionIsCalled_Then_TheExpressionOfSpecificationPIsReturned()
+        public void CanBeOverridenBySpecification()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
-            var universalSpecification = Specification<IProposition>.UniversialSpecification;
+            var blankSpecificationSut = Given.BlankSpecification<IProposition>().Real().Build();
 
 
-            var predicate = universalSpecification.OverrideWith(isPSpecification).ToExpression();
+            var predicate = blankSpecificationSut.OverwriteWith(isPSpecification).ToExpression();
 
             predicate.ToString().Should().Be("x => x.P");
 

@@ -4,7 +4,8 @@ using SpeciFire.UnitTests.ExpressionUtilities;
 
 namespace SpeciFire.UnitTests
 {
-    internal sealed class AndSpecification<TSubject> : Specification<TSubject> {
+    internal sealed class AndSpecification<TSubject> : Specification<TSubject>
+    {
 
         private readonly Specification<TSubject> left;
         private readonly Specification<TSubject> right;

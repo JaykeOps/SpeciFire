@@ -6,8 +6,8 @@ namespace SpeciFire.UnitTests.TestUtilities.TestBuilders
 
         public static PropositionSpecificationBuilder PropositionSpecification => new PropositionSpecificationBuilder();
 
-        public static UniversialSpecificationBuilder<TSubject> UniversialSpecificationStub<TSubject>() 
-            => new UniversialSpecificationBuilder<TSubject>();
+        public static BlankSpecificationBuilder<TSubject> BlankSpecification<TSubject>() 
+            => new BlankSpecificationBuilder<TSubject>();
 
         public static ContactSpecificationBuilder ContactSpecification => new ContactSpecificationBuilder();
     }

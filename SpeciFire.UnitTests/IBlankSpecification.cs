@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace SpeciFire.UnitTests
 {
-    public interface IUniversialSpecification<TSubject>
+    public interface IBlankSpecification<TSubject>
     {
-        Specification<TSubject> OverrideWith(Specification<TSubject> specification);
+        Specification<TSubject> OverwriteWith(Specification<TSubject> specification);
         Expression<Func<TSubject, bool>> ToExpression();
     }
 }

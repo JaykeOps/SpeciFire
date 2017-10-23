@@ -13,7 +13,7 @@ namespace SpeciFire.UnitTests.Tests
         public InMemoryDbInitializationTests(SqliteFixture fixture) => this.fixture = fixture;
 
         [Fact]
-        public void Given_SeededContactContext_Then_ContactsSetShouldNotBeEmptyOrNull()
+        public void DataShouldNotBeNullOrEmpty()
         {
             using (var context = new ContactContext(fixture.TestContextOptions))
             {

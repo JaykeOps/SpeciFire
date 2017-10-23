@@ -5,10 +5,10 @@ namespace SpeciFire.UnitTests
 {
     public abstract class Specification<TSubject>
     {
-        public static readonly UniversialSpecification<TSubject> UniversialSpecification = new UniversialSpecification<TSubject>();
+        public static readonly BlankSpecification<TSubject> Blank = new BlankSpecification<TSubject>();
 
 
-        public Specification<TSubject> NOT => new NotSpecification<TSubject>(this);
+        public Specification<TSubject> Not => new NotSpecification<TSubject>(this);
 
 
         public bool IsSatisfiedBySubject(TSubject subject)
@@ -21,9 +21,9 @@ namespace SpeciFire.UnitTests
         public abstract Expression<Func<TSubject, bool>> ToExpression();
 
 
-        public Specification<TSubject> AND(Specification<TSubject> specification) => new AndSpecification<TSubject>(this, specification);
+        public Specification<TSubject> And(Specification<TSubject> specification) => new AndSpecification<TSubject>(this, specification);
 
-        public Specification<TSubject> OR(Specification<TSubject> specification) =>
+        public Specification<TSubject> Or(Specification<TSubject> specification) =>
             new OrSpecification<TSubject>(this, specification);
     }
 }

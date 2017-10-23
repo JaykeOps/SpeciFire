@@ -18,9 +18,9 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_universalSpecification_When_QueryingContactContext_AllContactsShouldBeReturned()
+        public void CanGetAllContacts()
         {
-            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
+            var blankSpecification = Given.BlankSpecification<Contact>().Stub().Build();
             int contactSetCount;
             int queryResultCount;
 
@@ -32,7 +32,7 @@ namespace SpeciFire.UnitTests.Tests
 
             using (var context = new ContactContext(fixture.TestContextOptions))
             {
-                queryResultCount = context.Contacts.Where(universalSpecification.ToExpression().Compile()).Count();
+                queryResultCount = context.Contacts.Where(blankSpecification.ToExpression().Compile()).Count();
             }
 
 
@@ -41,11 +41,11 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededContactContext_And_UniversalSpecification_FollowedBy_MiamiCitySpecification_When_QueryingContactContext_Then_AllContactsReturnedShouldHaveCityValue_Miami()
+        public void CanGetAllContactsInMiami()
         {
             var miamiCitySpecification = Given.ContactSpecification.MiamiCity().Build();
-            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
-            miamiCitySpecification = universalSpecification.OverrideWith(miamiCitySpecification);
+            var blankSpecification = Given.BlankSpecification<Contact>().Stub().Build();
+            miamiCitySpecification = blankSpecification.OverwriteWith(miamiCitySpecification);
 
             IReadOnlyList<Contact> contactsResult;
 
@@ -63,21 +63,21 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_SeededConactContext_And_UniversalSpecification_FollowedBy_NegationLastNamesFirstLetterIsHSpecification_When_QueryingContactContext_Then_NoContactsReturnedShouldContainALastNameWithFirstLetter_H()
+        public void CanGetAllContactsWhereLastNameFirstLetterIsNotH()
         {
-            var universalSpecification = Given.UniversialSpecificationStub<Contact>().Build();
+            var blankSpecification = Given.BlankSpecification<Contact>().Stub().Build();
             var lastNamesFirstLetterIsHSpecification =
                 Given.ContactSpecification.LastNamesFirstLetterIsHSpecification().Build();
 
-            var lastNameFirstLetterIsNotHSpecification =
-                universalSpecification.OverrideWith(lastNamesFirstLetterIsHSpecification.NOT);
+            var lastNamesFirstLetterIsNotHSpecification =
+                blankSpecification.OverwriteWith(lastNamesFirstLetterIsHSpecification.Not);
 
             IReadOnlyList<Contact> contactResult;
 
 
             using (var context = new ContactContext(fixture.TestContextOptions))
             {
-                contactResult = context.Contacts.Where(lastNameFirstLetterIsNotHSpecification.ToExpression().Compile())
+                contactResult = context.Contacts.Where(lastNamesFirstLetterIsNotHSpecification.ToExpression().Compile())
                     .ToList();
             }
 

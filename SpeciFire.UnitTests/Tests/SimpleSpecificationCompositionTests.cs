@@ -8,14 +8,14 @@ namespace SpeciFire.UnitTests.Tests
     public class SimpleSpecificationCompositionTests
     {
         [Fact]
-        public void Given_UniversalSpecification_FollowedBy_PIsTrueSpecification_And_QIsTrueSpecification_When_SpecifiedAsConjunction_And_ToExpressionIsCalled_Then_AConjunctionOfIsPAndIsQSpecificationsIsReturned()
+        public void CanFormConjunction()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var universalSpecification = Given.UniversialSpecificationStub<IProposition>().Build();
+            var blankSpecification = Given.BlankSpecification<IProposition>().Stub().Build(); ;
 
 
-            var predicate = universalSpecification.OverrideWith(isPSpecification).AND(isQSpecification)
+            var predicate = blankSpecification.OverwriteWith(isPSpecification).And(isQSpecification)
                 .ToExpression();
 
 
@@ -24,14 +24,14 @@ namespace SpeciFire.UnitTests.Tests
 
 
         [Fact]
-        public void Given_UniversalSpecification_FollowedBy_PIsTrueSpecification_And_QIsTrueSpecification_When_SpecifedAsDisjunction_And_ToExpressionIsCalled_Then_ADisjunctionOfIsPAndIsQSpecificationsIsReturned()
+        public void CanFormDisjunction()
         {
             var isPSpecification = Given.PropositionSpecification.IsPStub().Build();
             var isQSpecification = Given.PropositionSpecification.IsQStub().Build();
-            var universalSpecification = Given.UniversialSpecificationStub<IProposition>().Build();
+            var blankSpecification = Given.BlankSpecification<IProposition>().Stub().Build(); ;
 
 
-            var predicate = universalSpecification.OverrideWith(isPSpecification).OR(isQSpecification)
+            var predicate = blankSpecification.OverwriteWith(isPSpecification).Or(isQSpecification)
                 .ToExpression();
 
 
